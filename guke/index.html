@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>预入出院（日间手术）管理系统 · 四川省骨科医院</title>
+<meta name="viewport" content="width=1600">
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round">
+          <path d="M12 4v16M4 12h16"/>
+        </svg>
+      </div>
+      <div class="brand-txt">
+        <b>四川省骨科医院</b>
+        <span>预入出院（日间手术）管理系统</span>
+      </div>
+    </div>
+    <div class="topbar-mid">
+      <div class="top-tab on">门诊业务</div>
+      <div class="top-tab">住院业务</div>
+      <div class="top-tab">手术业务</div>
+      <div class="top-tab">统计报表</div>
+      <div class="top-tab">系统管理</div>
+    </div>
+    <div class="top-right">
+      <span>业务日期 2026-11-02</span>
+      <span class="divider"></span>
+      <select class="role-sel" onchange="toast('已切换角色：' + this.value)">
+        <option>日间手术中心 · 张敏</option>
+        <option>门急诊医生 · 李国栋</option>
+        <option>收费人员 · 刘芳</option>
+        <option>麻醉医师 · 周文斌</option>
+        <option>手术室 · 唐雪梅</option>
+        <option>系统管理员 · admin</option>
+      </select>
+      <span class="divider"></span>
+      <span style="display:flex;align-items:center;gap:6px"><span class="avatar">张</span>张敏</span>
+    </div>
+  </div>
+  <div class="body">
+    <div class="sidebar" id="nav"></div>
+    <div class="main" id="main"></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script src="assets/data.js"></script>
+<script src="assets/ui.js"></script>
+<script src="assets/pages.js"></script>
+<script src="assets/pages2.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
