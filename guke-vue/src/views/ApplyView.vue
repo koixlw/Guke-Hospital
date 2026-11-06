@@ -1,12 +1,16 @@
 <script setup>
-import { reactive, ref } from 'vue'
-import { ElMessage } from 'element-plus'
+import { computed, reactive, ref } from 'vue'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import PageHeader from '@/components/PageHeader.vue'
 import SectionCard from '@/components/SectionCard.vue'
 import PatientBand from '@/components/PatientBand.vue'
 import TagBox from '@/components/TagBox.vue'
 import IconSvg from '@/components/IconSvg.vue'
 import { ANES, CUR, MODES } from '@/data/demo'
+import { useAuth } from '@/store/auth'
+
+const auth = useAuth()
+const { user } = auth
 
 const form = reactive({
   apply: CUR.apply,
@@ -23,15 +27,55 @@ const form = reactive({
 })
 
 /* 系统自动拦截：抗凝剂停药不足 7 天，提交按钮锁定 */
-const anticoagulantBlocked = true
+const exempted = ref(false)
+const anticoagulantBlocked = computed(() => !exempted.value)
 
 const toast = (m) => ElMessage.success(m)
-const submit = () => {
-  if (anticoagulantBlocked) {
-    ElMessage.error('抗凝剂停药时间未达标，暂不允许提交日间手术申请')
+
+/* 科主任复核豁免 */
+const applyExemption = async () => {
+  if (!auth.can('apply:submit')) {
+    ElMessage.warning(`当前角色「${auth.role.value.name}」无「提交日间手术申请」权限`)
     return
   }
-  toast('日间手术申请已提交')
+  try {
+    await ElMessageBox.confirm(
+      '抗凝剂停药仅 4 天，未达 7 天安全停药要求。确认已由科主任复核并承担风险，豁免本次拦截？',
+      '科主任复核豁免',
+      { confirmButtonText: '确认豁免', cancelButtonText: '取消', type: 'warning' }
+    )
+  } catch {
+    return
+  }
+  exempted.value = true
+  ElMessage.success('科主任复核豁免已记录，提交按钮已解锁（留痕可查）')
+}
+
+const submit = () => {
+  if (!auth.can('apply:submit')) {
+    ElMessage.warning(`当前角色「${auth.role.value.name}」无「提交日间手术申请」权限`)
+    return
+  }
+  if (anticoagulantBlocked.value) {
+    ElMessage.error('抗凝剂停药时间未达标（4 天 < 7 天），暂不允许提交日间手术申请')
+    return
+  }
+  toast('日间手术申请已提交，已生成术前检查与麻醉评估待办')
+}
+
+/* 保存草稿 */
+const draft = ref(false)
+const saveDraft = () => {
+  draft.value = true
+  toast('草稿已保存')
+}
+
+/* 发起会诊 */
+const consultVisible = ref(false)
+const consultForm = reactive({ dept: '关节外科', way: '门诊会诊', note: '抗凝剂停药不足 7 天，请评估能否行日间手术。' })
+const doConsult = () => {
+  consultVisible.value = false
+  toast(`已发起${consultForm.dept}${consultForm.way}，会诊单号 HZ20261102007`)
 }
 </script>
 
@@ -52,11 +96,18 @@ const submit = () => {
 
     <div style="height: 12px" />
 
-    <el-alert type="error" :closable="false" show-icon>
+    <el-alert v-if="anticoagulantBlocked" type="error" :closable="false" show-icon>
       <template #title>系统自动拦截：该患者口服抗凝剂停药时间不足 7 天，不允许申请日间手术</template>
       <template #default>
         系统读取门诊诊断与医嘱，识别到口服抗凝剂「利伐沙班片 10mg qd」，末次服药日期 2026-10-29，截至今日停药
         <b>4 天</b>，未达到 7 天安全停药要求。请待停药满 7 天后再行申请，或经专科会诊评估后按择期普通住院办理。
+      </template>
+    </el-alert>
+
+    <el-alert v-else type="warning" :closable="false" show-icon>
+      <template #title>已由科主任复核并豁免抗凝剂停药限制，可提交日间手术申请</template>
+      <template #default>
+        豁免记录：复核人 {{ user?.name }} · 2026-11-02 11:26 · 留痕写入申请单操作日志，术者与麻醉医师须在术前再次核实用药史。
       </template>
     </el-alert>
 
@@ -127,15 +178,21 @@ const submit = () => {
             </div>
 
             <div
-              style="margin-top: 14px; display: flex; gap: 9px; align-items: center; border-top: 1px dashed var(--line); padding-top: 12px"
+              style="margin-top: 14px; display: flex; gap: 9px; align-items: center; border-top: 1px dashed var(--line); padding-top: 12px; flex-wrap: wrap"
             >
-              <el-button size="small" @click="toast('草稿已保存')">保存草稿</el-button>
-              <el-button type="primary" size="small" :disabled="anticoagulantBlocked" @click="submit">
+              <el-button size="small" @click="saveDraft">保存草稿</el-button>
+              <el-button v-perm="'apply:submit'" type="primary" size="small" @click="submit">
                 提交申请
               </el-button>
-              <el-button size="small" @click="toast('已发起专科会诊')">发起会诊</el-button>
-              <span class="hint" style="margin-left: auto; color: #d64545">
-                <IconSvg name="warn" :size="12" /> 抗凝剂控制未通过，提交按钮已锁定
+              <el-button size="small" @click="consultVisible = true">发起会诊</el-button>
+              <el-button v-if="anticoagulantBlocked" size="small" @click="applyExemption">
+                <IconSvg name="warn" :size="13" />科主任复核
+              </el-button>
+              <span v-if="anticoagulantBlocked" class="hint" style="margin-left: auto; color: #d64545">
+                <IconSvg name="warn" :size="12" /> 抗凝剂控制未通过，提交将被系统拦截
+              </span>
+              <span v-else class="hint" style="margin-left: auto; color: #0f9d63">
+                <IconSvg name="ok" :size="12" /> 已豁免拦截，提交按钮已解锁
               </span>
             </div>
           </el-form>
@@ -168,7 +225,8 @@ const submit = () => {
               </tr>
               <tr>
                 <td style="color: #7b8fa3">判断结果</td>
-                <td><TagBox text="拦截" tone="r" /> 不允许申请日间手术</td>
+                <td v-if="anticoagulantBlocked"><TagBox text="拦截" tone="r" /> 不允许申请日间手术</td>
+                <td v-else><TagBox text="已豁免" tone="o" /> 科主任复核通过，允许申请</td>
               </tr>
             </tbody>
           </table>
@@ -195,6 +253,33 @@ const submit = () => {
         </SectionCard>
       </div>
     </div>
+
+    <!-- 发起会诊 -->
+    <el-dialog v-model="consultVisible" title="发起专科会诊" width="480px">
+      <el-form label-width="88px" label-position="left">
+        <el-form-item label="会诊科室">
+          <el-select v-model="consultForm.dept" style="width: 200px">
+            <el-option label="关节外科" value="关节外科" />
+            <el-option label="心血管内科" value="心血管内科" />
+            <el-option label="麻醉科" value="麻醉科" />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="会诊方式">
+          <el-select v-model="consultForm.way" style="width: 200px">
+            <el-option label="门诊会诊" value="门诊会诊" />
+            <el-option label="床旁会诊" value="床旁会诊" />
+            <el-option label="线上会诊" value="线上会诊" />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="会诊事由">
+          <el-input v-model="consultForm.note" type="textarea" :rows="3" resize="none" />
+        </el-form-item>
+      </el-form>
+      <template #footer>
+        <el-button size="small" @click="consultVisible = false">取消</el-button>
+        <el-button type="primary" size="small" @click="doConsult">发起会诊</el-button>
+      </template>
+    </el-dialog>
   </div>
 </template>
 

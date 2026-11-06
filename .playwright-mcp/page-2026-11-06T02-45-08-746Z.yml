@@ -1,0 +1,203 @@
+- generic [ref=f6e119]:
+  - banner [ref=f6e120]:
+    - generic [ref=f6e125]:
+      - generic [ref=f6e126]: 四川省骨科医院
+      - text: 预入出院（日间手术）管理系统
+    - navigation [ref=f6e127]:
+      - generic [ref=f6e128] [cursor=pointer]:
+        - text: 全部业务
+        - generic [ref=f6e129]: "5"
+      - generic [ref=f6e130] [cursor=pointer]:
+        - text: 门诊业务
+        - generic [ref=f6e131]: "3"
+      - generic [ref=f6e132] [cursor=pointer]:
+        - text: 统计报表
+        - generic [ref=f6e133]: "1"
+    - generic [ref=f6e134]:
+      - generic [ref=f6e135]: 业务日期 2026-11-02
+      - button "王 王海涛 主任医师 · 手外科 / 显微外科" [ref=f6e138] [cursor=pointer]:
+        - generic [ref=f6e139]: 王
+        - generic [ref=f6e140]:
+          - generic [ref=f6e141]: 王海涛
+          - emphasis [ref=f6e142]: 主任医师 · 手外科 / 显微外科
+  - generic [ref=f6e145]:
+    - complementary [ref=f6e146]:
+      - generic [ref=f6e147]:
+        - generic [ref=f6e148]: 总览
+        - generic [ref=f6e149] [cursor=pointer]: 工作台
+      - generic [ref=f6e153]:
+        - generic [ref=f6e154]: 门诊·申请阶段
+        - generic [ref=f6e155] [cursor=pointer]: 术前检查及预约
+      - generic [ref=f6e159]:
+        - generic [ref=f6e160]: 评估阶段
+        - generic [ref=f6e161] [cursor=pointer]: 专科评估
+        - generic [ref=f6e165] [cursor=pointer]: 麻醉评估
+      - generic [ref=f6e175]:
+        - generic [ref=f6e176]: 当前角色
+        - generic [ref=f6e177]: 专科医师
+        - generic [ref=f6e178]: 可见 5 个模块 · 本科室患者
+    - main [ref=f6e179]:
+      - generic [ref=f6e180]:
+        - generic [ref=f6e1118]: 门诊·申请阶段
+        - generic [ref=f6e1119]: /
+        - generic [ref=f6e1120]: 术前检查及预约
+        - generic [ref=f6e182]: 专科医师 · 王海涛
+      - generic [ref=f6e1121]:
+        - generic [ref=f6e1122]:
+          - generic [ref=f6e1123]:
+            - generic [ref=f6e1124]: 术前检查及预约
+            - generic [ref=f6e1126]: 术前检查检验在门诊完成 · 复用现有医技预约、医技收费系统 · 报告回传关联申请单
+          - button "同步报告" [ref=f6e1128] [cursor=pointer]
+        - generic [ref=f6e1132]:
+          - generic [ref=f6e1133]:
+            - generic [ref=f6e1134]: 王
+            - generic [ref=f6e1135]: 男 · 56岁
+          - generic [ref=f6e1136]:
+            - generic [ref=f6e1137]:
+              - text: 王建国
+              - generic [ref=f6e1138]: 病历号 M2026031872
+              - generic [ref=f6e1139]: 手术麻醉
+            - generic [ref=f6e1140]:
+              - generic [ref=f6e1141]: 门诊号 OP20261102031
+              - generic [ref=f6e1142]: 住院号 ZY20261102481
+              - generic [ref=f6e1143]: 床位 38-12
+              - generic [ref=f6e1144]: 科室 关节外科
+              - generic [ref=f6e1145]: 主诊医师 李国栋
+              - generic [ref=f6e1146]: 诊断 右膝内侧半月板撕裂（S83.201）
+          - generic [ref=f6e1147]:
+            - generic [ref=f6e1148]: 日间手术申请单号
+            - generic [ref=f6e1149]: DZ20261102007
+            - generic [ref=f6e1150]: 业务模式 · 手术麻醉
+        - generic [ref=f6e1152]:
+          - generic [ref=f6e1154]:
+            - generic [ref=f6e1155]:
+              - generic [ref=f6e1157]: 术前检查检验项目
+              - generic [ref=f6e1158]: 7 / 7 项已完成 · 报告已回传
+            - generic [ref=f6e1161]:
+              - table [ref=f6e1163]:
+                - rowgroup [ref=f6e1171]:
+                  - row [ref=f6e1172]:
+                    - columnheader "项目名称" [ref=f6e1173]
+                    - columnheader "预约时间" [ref=f6e1175]
+                    - columnheader "执行科室" [ref=f6e1177]
+                    - columnheader "状态" [ref=f6e1179]
+                    - columnheader "报告回传" [ref=f6e1181]
+                    - columnheader "操作" [ref=f6e1183]
+              - table [ref=f6e1189]:
+                - rowgroup [ref=f6e1197]:
+                  - row [ref=f6e1198]:
+                    - cell "血常规（五分类） 检验 · 来源：LIS" [ref=f6e1199]:
+                      - generic [ref=f6e1200]:
+                        - text: 血常规（五分类）
+                        - generic [ref=f6e1201]: 检验 · 来源：LIS
+                    - cell "2026-10-30 08:20" [ref=f6e1202]
+                    - cell "检验科" [ref=f6e1204]
+                    - cell "报告已回传" [ref=f6e1206]
+                    - cell "2026-10-30 10:05" [ref=f6e1208]
+                    - cell "查看报告" [ref=f6e1210]
+                  - row [ref=f6e1212]:
+                    - cell "凝血四项（PT/APTT/TT/FIB） 检验 · 来源：LIS" [ref=f6e1213]:
+                      - generic [ref=f6e1214]:
+                        - text: 凝血四项（PT/APTT/TT/FIB）
+                        - generic [ref=f6e1215]: 检验 · 来源：LIS
+                    - cell "2026-10-30 08:20" [ref=f6e1216]
+                    - cell "检验科" [ref=f6e1218]
+                    - cell "报告已回传" [ref=f6e1220]
+                    - cell "2026-10-30 10:05" [ref=f6e1222]
+                    - cell "查看报告" [ref=f6e1224]
+                  - row [ref=f6e1226]:
+                    - cell "生化全套（肝肾功能+电解质） 检验 · 来源：LIS" [ref=f6e1227]:
+                      - generic [ref=f6e1228]:
+                        - text: 生化全套（肝肾功能+电解质）
+                        - generic [ref=f6e1229]: 检验 · 来源：LIS
+                    - cell "2026-10-30 08:20" [ref=f6e1230]
+                    - cell "检验科" [ref=f6e1232]
+                    - cell "报告已回传" [ref=f6e1234]
+                    - cell "2026-10-30 11:30" [ref=f6e1236]
+                    - cell "查看报告" [ref=f6e1238]
+                  - row [ref=f6e1240]:
+                    - cell "心电图（十二导联） 检查 · 来源：医技预约" [ref=f6e1241]:
+                      - generic [ref=f6e1242]:
+                        - text: 心电图（十二导联）
+                        - generic [ref=f6e1243]: 检查 · 来源：医技预约
+                    - cell "2026-10-30 09:00" [ref=f6e1244]
+                    - cell "医技预约系统" [ref=f6e1246]
+                    - cell "报告已回传" [ref=f6e1248]
+                    - cell "2026-10-30 09:25" [ref=f6e1250]
+                    - cell "查看报告" [ref=f6e1252]
+                  - row [ref=f6e1254]:
+                    - cell "胸部正侧位 DR 检查 · 来源：医技预约" [ref=f6e1255]:
+                      - generic [ref=f6e1256]:
+                        - text: 胸部正侧位 DR
+                        - generic [ref=f6e1257]: 检查 · 来源：医技预约
+                    - cell "2026-10-30 09:30" [ref=f6e1258]
+                    - cell "医技预约系统" [ref=f6e1260]
+                    - cell "报告已回传" [ref=f6e1262]
+                    - cell "2026-10-30 14:10" [ref=f6e1264]
+                    - cell "查看报告" [ref=f6e1266]
+                  - row [ref=f6e1268]:
+                    - cell "右膝关节 MRI（3.0T） 检查 · 来源：医技预约" [ref=f6e1269]:
+                      - generic [ref=f6e1270]:
+                        - text: 右膝关节 MRI（3.0T）
+                        - generic [ref=f6e1271]: 检查 · 来源：医技预约
+                    - cell "2026-10-30 15:00" [ref=f6e1272]
+                    - cell "医技预约系统" [ref=f6e1274]
+                    - cell "报告已回传" [ref=f6e1276]
+                    - cell "2026-10-31 09:40" [ref=f6e1278]
+                    - cell "查看报告" [ref=f6e1280]
+                  - row [ref=f6e1282]:
+                    - cell "感染性疾病筛查（乙肝/HIV/梅毒） 检验 · 来源：LIS" [ref=f6e1283]:
+                      - generic [ref=f6e1284]:
+                        - text: 感染性疾病筛查（乙肝/HIV/梅毒）
+                        - generic [ref=f6e1285]: 检验 · 来源：LIS
+                    - cell "2026-10-31 08:10" [ref=f6e1286]
+                    - cell "检验科" [ref=f6e1288]
+                    - cell "报告已回传" [ref=f6e1290]
+                    - cell "2026-10-31 16:20" [ref=f6e1292]
+                    - cell "查看报告" [ref=f6e1294]
+          - generic [ref=f6e1296]:
+            - generic [ref=f6e1297]:
+              - generic [ref=f6e1298]: 接口调用状态
+              - generic [ref=f6e1301]:
+                - generic [ref=f6e1302]:
+                  - generic [ref=f6e1303]:
+                    - text: 医技预约系统
+                    - generic [ref=f6e1305]: 已联通
+                  - generic [ref=f6e1306]:
+                    - text: 医技收费系统
+                    - generic [ref=f6e1308]: 已联通
+                  - generic [ref=f6e1309]:
+                    - text: LIS 检验系统
+                    - generic [ref=f6e1311]: 已联通
+                  - generic [ref=f6e1312]:
+                    - text: PACS 影像系统
+                    - generic [ref=f6e1314]: 已联通
+                - generic [ref=f6e1315]: 本系统不重复建设医技功能，通过集成平台接口调用现有医技系统完成预约与收费，报告回传后与申请单自动关联。
+            - generic [ref=f6e1316]:
+              - generic [ref=f6e1317]: 接口日志（今日）
+              - generic [ref=f6e1321]:
+                - generic [ref=f6e1322]:
+                  - generic [ref=f6e1323]:
+                    - generic [ref=f6e1324]: 预约状态回传
+                    - generic [ref=f6e1325]: 医技预约系统 · 10:05:12 · 184ms
+                  - generic [ref=f6e1326]: 成功
+                - generic [ref=f6e1327]:
+                  - generic [ref=f6e1328]:
+                    - generic [ref=f6e1329]: 检查项目记账 427.00
+                    - generic [ref=f6e1330]: 医技收费系统 · 10:05:13 · 216ms
+                  - generic [ref=f6e1331]: 成功
+                - generic [ref=f6e1332]:
+                  - generic [ref=f6e1333]:
+                    - generic [ref=f6e1334]: 检验报告回传（3 项）
+                    - generic [ref=f6e1335]: LIS · 10:06:40 · 158ms
+                  - generic [ref=f6e1336]: 成功
+                - generic [ref=f6e1337]:
+                  - generic [ref=f6e1338]:
+                    - generic [ref=f6e1339]: 检查报告回传（DR）
+                    - generic [ref=f6e1340]: 医技预约系统 · 14:12:05 · 203ms
+                  - generic [ref=f6e1341]: 成功
+                - generic [ref=f6e1342]:
+                  - generic [ref=f6e1343]:
+                    - generic [ref=f6e1344]: MRI 报告回传
+                    - generic [ref=f6e1345]: 医技预约系统 · 09:42:18 · 241ms
+                  - generic [ref=f6e1346]: 成功

@@ -1,0 +1,188 @@
+- generic [ref=f6e119]:
+  - banner [ref=f6e120]:
+    - generic [ref=f6e125]:
+      - generic [ref=f6e126]: 四川省骨科医院
+      - text: 预入出院（日间手术）管理系统
+    - navigation [ref=f6e127]:
+      - generic [ref=f6e128] [cursor=pointer]:
+        - text: 全部业务
+        - generic [ref=f6e129]: "5"
+      - generic [ref=f6e130] [cursor=pointer]:
+        - text: 门诊业务
+        - generic [ref=f6e131]: "3"
+      - generic [ref=f6e132] [cursor=pointer]:
+        - text: 统计报表
+        - generic [ref=f6e133]: "1"
+    - generic [ref=f6e134]:
+      - generic [ref=f6e135]: 业务日期 2026-11-02
+      - button "王 王海涛 主任医师 · 手外科 / 显微外科" [ref=f6e138] [cursor=pointer]:
+        - generic [ref=f6e139]: 王
+        - generic [ref=f6e140]:
+          - generic [ref=f6e141]: 王海涛
+          - emphasis [ref=f6e142]: 主任医师 · 手外科 / 显微外科
+  - generic [ref=f6e145]:
+    - complementary [ref=f6e146]:
+      - generic [ref=f6e147]:
+        - generic [ref=f6e148]: 总览
+        - generic [ref=f6e149] [cursor=pointer]: 工作台
+      - generic [ref=f6e153]:
+        - generic [ref=f6e154]: 门诊·申请阶段
+        - generic [ref=f6e155] [cursor=pointer]: 术前检查及预约
+      - generic [ref=f6e159]:
+        - generic [ref=f6e160]: 评估阶段
+        - generic [ref=f6e161] [cursor=pointer]: 专科评估
+        - generic [ref=f6e165] [cursor=pointer]: 麻醉评估
+      - generic [ref=f6e175]:
+        - generic [ref=f6e176]: 当前角色
+        - generic [ref=f6e177]: 专科医师
+        - generic [ref=f6e178]: 可见 5 个模块 · 本科室患者
+    - main [ref=f6e179]:
+      - generic [ref=f6e180]:
+        - generic [ref=f6e666]: 评估阶段
+        - generic [ref=f6e667]: /
+        - generic [ref=f6e668]: 专科评估
+        - generic [ref=f6e182]: 专科医师 · 王海涛
+      - generic [ref=f6e927]:
+        - generic [ref=f6e928]:
+          - generic [ref=f6e929]:
+            - generic [ref=f6e930]: 专科评估
+            - generic [ref=f6e932]: 专科医师在线评估 · 报告同屏查看 · 未通过原因提供常见选项并与退出流程联动
+          - generic [ref=f6e933]:
+            - button "暂存" [ref=f6e934] [cursor=pointer]
+            - button "提交评估结论" [ref=f6e936] [cursor=pointer]
+        - generic [ref=f6e940]:
+          - generic [ref=f6e941]:
+            - generic [ref=f6e942]: 王
+            - generic [ref=f6e943]: 男 · 56岁
+          - generic [ref=f6e944]:
+            - generic [ref=f6e945]:
+              - text: 王建国
+              - generic [ref=f6e946]: 病历号 M2026031872
+              - generic [ref=f6e947]: 手术麻醉
+              - generic [ref=f6e948]: 待评估
+            - generic [ref=f6e950]:
+              - generic [ref=f6e951]: 门诊号 OP20261102031
+              - generic [ref=f6e952]: 住院号 ZY20261102481
+              - generic [ref=f6e953]: 床位 38-12
+              - generic [ref=f6e954]: 科室 关节外科
+              - generic [ref=f6e955]: 主诊医师 李国栋
+              - generic [ref=f6e956]: 诊断 右膝内侧半月板撕裂（S83.201）
+          - generic [ref=f6e957]:
+            - generic [ref=f6e958]: 日间手术申请单号
+            - generic [ref=f6e959]: DZ20261102007
+            - generic [ref=f6e960]: 业务模式 · 手术麻醉
+        - generic [ref=f6e962]:
+          - generic [ref=f6e964]:
+            - generic [ref=f6e965]:
+              - generic [ref=f6e967]: 术前检查检验报告
+              - generic [ref=f6e968]: 6 项
+            - generic [ref=f6e969]:
+              - generic [ref=f6e970] [cursor=pointer]:
+                - generic [ref=f6e971]:
+                  - generic [ref=f6e972]: 血常规（五分类）
+                  - generic [ref=f6e973]: 2026-10-30 10:05 · 已回传
+                - generic [ref=f6e974]: 已查看
+              - generic [ref=f6e977] [cursor=pointer]:
+                - generic [ref=f6e978]:
+                  - generic [ref=f6e979]: 凝血四项（PT/APTT/TT/FIB）
+                  - generic [ref=f6e980]: 2026-10-30 10:05 · 已回传
+                - generic [ref=f6e981]: 已查看
+              - generic [ref=f6e984] [cursor=pointer]:
+                - generic [ref=f6e985]:
+                  - generic [ref=f6e986]: 生化全套（肝肾功能+电解质）
+                  - generic [ref=f6e987]: 2026-10-30 11:30 · 已回传
+                - generic [ref=f6e988]: 已查看
+              - generic [ref=f6e991] [cursor=pointer]:
+                - generic [ref=f6e992]:
+                  - generic [ref=f6e993]: 心电图（十二导联）
+                  - generic [ref=f6e994]: 2026-10-30 09:25 · 已回传
+                - generic [ref=f6e995]: 已查看
+              - generic [ref=f6e998] [cursor=pointer]:
+                - generic [ref=f6e999]:
+                  - generic [ref=f6e1000]: 胸部正侧位 DR
+                  - generic [ref=f6e1001]: 2026-10-30 14:10 · 已回传
+                - generic [ref=f6e1002]: 已查看
+              - generic [ref=f6e1005] [cursor=pointer]:
+                - generic [ref=f6e1006]:
+                  - generic [ref=f6e1007]: 右膝关节 MRI（3.0T）
+                  - generic [ref=f6e1008]: 2026-10-31 09:40 · 已回传
+                - generic [ref=f6e1009]: 已查看
+          - generic [ref=f6e1012]:
+            - generic [ref=f6e1013]:
+              - generic [ref=f6e1014]:
+                - generic [ref=f6e1016]: 报告详情 · 凝血四项（2026-10-30 10:05）
+                - generic [ref=f6e1017]: 切换报告
+              - generic [ref=f6e1019]:
+                - generic [ref=f6e1020]:
+                  - generic [ref=f6e1021]: 凝血酶原时间 PT
+                  - generic [ref=f6e1022]: 12.4 s <em>参考 11.0—14.5</em>
+                - generic [ref=f6e1023]:
+                  - generic [ref=f6e1024]: 国际标准化比值 INR
+                  - generic [ref=f6e1025]: 1.05 <em>参考 0.80—1.20</em>
+                - generic [ref=f6e1026]:
+                  - generic [ref=f6e1027]: 活化部分凝血活酶 APTT
+                  - generic [ref=f6e1028]: 33.8 s <em>参考 28.0—45.0</em>
+                - generic [ref=f6e1029]:
+                  - generic [ref=f6e1030]: 纤维蛋白原 FIB
+                  - generic [ref=f6e1031]: 3.42 g/L <em>参考 2.00—4.00</em>
+                - generic [ref=f6e1032]:
+                  - generic [ref=f6e1033]: D-二聚体
+                  - generic [ref=f6e1034]: 0.86 mg/L <em>参考 &lt; 0.50</em> ↑
+                - generic [ref=f6e1035]:
+                  - generic [ref=f6e1036]: 报告结论
+                  - generic [ref=f6e1037]: 凝血功能基本正常，D-二聚体轻度升高，建议结合临床。
+                - generic [ref=f6e1038]:
+                  - generic [ref=f6e1039]: 审核
+                  - generic [ref=f6e1040]: 检验科 · 周敏 副主任技师
+            - generic [ref=f6e1041]:
+              - generic [ref=f6e1042]: 专科评估意见
+              - generic [ref=f6e1045]:
+                - generic [ref=f6e1046]:
+                  - generic [ref=f6e1047]:
+                    - generic [ref=f6e1048]: 评估结论
+                    - radiogroup "radio-group" [ref=f6e1049]:
+                      - generic [ref=f6e1050] [cursor=pointer]:
+                        - radio "通过" [checked] [ref=f6e1052]
+                        - generic [ref=f6e1054]: 通过
+                      - generic [ref=f6e1055] [cursor=pointer]:
+                        - radio "不通过" [ref=f6e1057]
+                        - generic [ref=f6e1059]: 不通过
+                  - generic [ref=f6e1060]:
+                    - generic [ref=f6e1061]: ASA 分级
+                    - generic [ref=f6e1062] [cursor=pointer]:
+                      - generic:
+                        - combobox [ref=f6e1064]
+                        - generic: Ⅱ 级
+                - generic [ref=f6e1069]:
+                  - generic [ref=f6e1070]: 评估意见
+                  - textbox [ref=f6e1072]: 患者一般情况可，心肺功能可耐受手术，术前检查检验结果无明显手术禁忌，同意行日间手术。
+          - generic [ref=f6e1073]:
+            - generic [ref=f6e1074]:
+              - generic [ref=f6e1075]: 评估表单（未通过时填写）
+              - generic [ref=f6e1078]:
+                - generic [ref=f6e1079]: 常见原因（可多选，支持自定义补充）
+                - generic [ref=f6e1080]:
+                  - generic [ref=f6e1081] [cursor=pointer]: ✓ 术前检查检验结果异常，需进一步复查
+                  - generic [ref=f6e1082] [cursor=pointer]: 合并症控制不佳（血压/血糖未达标）
+                  - generic [ref=f6e1083] [cursor=pointer]: 麻醉风险评估分级偏高（ASA Ⅲ级及以上）
+                  - generic [ref=f6e1084] [cursor=pointer]: 患者近期呼吸道感染未愈
+                - generic [ref=f6e1085]: 自定义补充
+                - textbox "请填写具体原因，将同步至病案与退出记录" [ref=f6e1087]
+                - generic [ref=f6e1088]: 评估结论流转
+                - generic [ref=f6e1089]: 通过 → 生成麻醉评估待办 不通过 → 一键触发退出日间路径（需选择退出原因）
+                - generic [ref=f6e1090]:
+                  - button "保存" [ref=f6e1091] [cursor=pointer]
+                  - button "签发" [ref=f6e1095] [cursor=pointer]
+            - generic [ref=f6e1099]:
+              - generic [ref=f6e1100]: 评估记录
+              - generic [ref=f6e1103]:
+                - generic [ref=f6e1104]:
+                  - generic [ref=f6e1105]:
+                    - generic [ref=f6e1106]: 专科评估 · 通过
+                    - generic [ref=f6e1107]: 李国栋 · 2026-10-31 11:02
+                  - generic [ref=f6e1108]: 已签发
+                - generic [ref=f6e1111]:
+                  - generic [ref=f6e1112]:
+                    - generic [ref=f6e1113]: 术前访视记录
+                    - generic [ref=f6e1114]: 日间手术中心 · 何静 · 2026-10-31
+                  - generic [ref=f6e1115]: 已签发

@@ -1,6 +1,6 @@
 <script setup>
-import { reactive } from 'vue'
-import { ElMessage } from 'element-plus'
+import { computed, reactive, ref } from 'vue'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import PageHeader from '@/components/PageHeader.vue'
 import SectionCard from '@/components/SectionCard.vue'
 import PatientBand from '@/components/PatientBand.vue'
@@ -9,6 +9,9 @@ import InfoList from '@/components/InfoList.vue'
 import StepsBar from '@/components/StepsBar.vue'
 import IconSvg from '@/components/IconSvg.vue'
 import { QUIT_REASON } from '@/data/demo'
+import { useAuth } from '@/store/auth'
+
+const auth = useAuth()
 
 const NOTIFY_WAYS = ['电话告知日间手术中心', '现场办理', '短信回复']
 
@@ -30,13 +33,39 @@ const settle = [
 ]
 
 /* 资源释放 */
-const resources = [
-  { t1: '手术间 / 台次', t2: '门诊手术室 2 间 · 11-03 10:00 第 2 台', tag: '已释放', tone: 'g' },
-  { t1: '床位预占', t2: '38 病区 38-12', tag: '已释放', tone: 'g' },
-  { t1: '短信通知', t2: '向患者发送退出确认短信', tag: '待发送', tone: 'o' }
-]
+const exited = ref(false)
+const resources = computed(() => [
+  { t1: '手术间 / 台次', t2: '门诊手术室 2 间 · 11-03 10:00 第 2 台', tag: exited.value ? '已释放' : '待释放', tone: exited.value ? 'g' : 'o' },
+  { t1: '床位预占', t2: '38 病区 38-12', tag: exited.value ? '已释放' : '待释放', tone: exited.value ? 'g' : 'o' },
+  { t1: '短信通知', t2: '向患者发送退出确认短信', tag: exited.value ? '已发送' : '待发送', tone: exited.value ? 'g' : 'o' }
+])
 
 const steps = ['退出申请', '原因确认', '资金结算', '资源释放']
+const stepCurrent = computed(() => (exited.value ? 3 : 1))
+
+/* 确认退出 */
+const doQuit = async () => {
+  if (!auth.can('quit:confirm')) {
+    ElMessage.warning(`当前角色「${auth.role.value.name}」无「确认退出日间手术」权限`)
+    return
+  }
+  if (exited.value) {
+    ElMessage.info('该患者已退出日间手术路径，无需重复操作')
+    return
+  }
+  try {
+    await ElMessageBox.confirm(
+      `确认以「${form.reason}」退出日间手术路径？已发生检查检验费用将按门诊规则核销，余额 ${settle[2].amt} 元原路退回。`,
+      '确认退出日间手术',
+      { confirmButtonText: '确认退出', cancelButtonText: '取消', type: 'warning' }
+    )
+  } catch {
+    return
+  }
+  exited.value = true
+  form.stage = '已退出日间路径'
+  ElMessage.success('已确认退出日间手术路径：资源已释放，门诊结算完成，退出记录已写入')
+}
 
 const toast = (m) => ElMessage.success(m)
 
@@ -52,7 +81,7 @@ const settleSummary = ({ columns }) =>
       sub="麻醉评估未通过、患者电话告知不来手术等情形，由日间手术中心退出日间路径 · 选择退出原因 · 自动衔接门诊结算"
     >
       <template #actions>
-        <el-button type="danger" size="small" @click="toast('已确认退出日间手术路径')">
+        <el-button v-perm="'quit:confirm'" type="danger" size="small" @click="doQuit">
           <IconSvg name="exit" :size="13" />确认退出
         </el-button>
         <el-button size="small" @click="toast('已取消退出操作')">取消</el-button>
@@ -60,7 +89,10 @@ const settleSummary = ({ columns }) =>
     </PageHeader>
 
     <PatientBand>
-      <template #extra><TagBox text="待退出" tone="o" /></template>
+      <template #extra>
+        <TagBox v-if="exited" text="已退出" tone="gy" />
+        <TagBox v-else text="待退出" tone="o" />
+      </template>
     </PatientBand>
 
     <div style="height: 12px" />
@@ -134,7 +166,7 @@ const settleSummary = ({ columns }) =>
       <div>
         <SectionCard title="退出流程">
           <div style="padding-top: 4px">
-            <StepsBar :items="steps" :current="1" />
+            <StepsBar :items="steps" :current="stepCurrent" />
           </div>
         </SectionCard>
 
@@ -147,8 +179,8 @@ const settleSummary = ({ columns }) =>
             操作人：张敏（日间手术中心）<br />
             操作时间：2026-11-02 11:02:35<br />
             操作内容：退出日间路径 + 门诊结算<br />
-            退出原因：麻醉评估未通过<br />
-            结果：成功 · 已写入退出记录表
+            退出原因：{{ form.reason }}<br />
+            结果：{{ exited ? '成功 · 已写入退出记录表' : '待确认 · 尚未写入退出记录表' }}
           </div>
         </SectionCard>
       </div>

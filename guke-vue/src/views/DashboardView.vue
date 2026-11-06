@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import PageHeader from '@/components/PageHeader.vue'
@@ -7,16 +8,19 @@ import StatTile from '@/components/StatTile.vue'
 import MiniStat from '@/components/MiniStat.vue'
 import TagBox from '@/components/TagBox.vue'
 import IconSvg from '@/components/IconSvg.vue'
+import { useAuth } from '@/store/auth'
 
 const router = useRouter()
+const auth = useAuth()
+const { user, role } = auth
 
 const kpis = [
-  { lb: '今日日间手术申请', vl: 24, u: '例', dt: '较昨日 +6 例', tone: '' },
-  { lb: '待专科评估', vl: 6, u: '例', dt: '超时未评估 1 例', tone: 'orange' },
-  { lb: '待麻醉评估', vl: 5, u: '例', dt: '平均等待 3.2 小时', tone: 'orange' },
-  { lb: '待预约手术', vl: 4, u: '例', dt: '号源充足', tone: 'teal' },
-  { lb: '今日入院登记', vl: 8, u: '例', dt: '已报到 6 例', tone: 'green' },
-  { lb: '今日手术完成', vl: 11, u: '例', dt: '台次利用率 86%', tone: 'green' }
+  { lb: '今日日间手术申请', vl: 24, u: '例', dt: '较昨日 +6 例', tone: '', to: 'apply' },
+  { lb: '待专科评估', vl: 6, u: '例', dt: '超时未评估 1 例', tone: 'orange', to: 'spec' },
+  { lb: '待麻醉评估', vl: 5, u: '例', dt: '平均等待 3.2 小时', tone: 'orange', to: 'anes' },
+  { lb: '待预约手术', vl: 4, u: '例', dt: '号源充足', tone: 'teal', to: 'booking' },
+  { lb: '今日入院登记', vl: 8, u: '例', dt: '已报到 6 例', tone: 'green', to: 'admit' },
+  { lb: '今日手术完成', vl: 11, u: '例', dt: '台次利用率 86%', tone: 'green', to: 'manage' }
 ]
 
 const flow = [
@@ -48,16 +52,59 @@ const todos = [
 ]
 
 const toast = (m) => ElMessage.success(m)
+
+/* 数据时间戳（点击刷新后更新） */
+const stamp = ref('10:38')
+const refresh = () => {
+  const d = new Date()
+  stamp.value = [d.getHours(), d.getMinutes(), d.getSeconds()]
+    .map((n) => String(n).padStart(2, '0'))
+    .join(':')
+  ElMessage.success(`数据已刷新 · 截至 ${stamp.value}`)
+}
+
+/* KPI 磁贴点击进入对应模块 */
+const goKpi = (k) => {
+  if (!auth.hasModule(k.to)) {
+    ElMessage.warning(`当前角色「${auth.role.value.name}」无权访问【${k.lb}】`)
+    return
+  }
+  router.push('/' + k.to)
+}
+
+/* 导出日报：生成 CSV 并下载 */
+const exportReport = () => {
+  const head = '手术间,时间,手术名称,患者,术者,麻醉方式,状态'
+  const body = schedules.map((s) => [s.room, s.time, s.op, s.pt, s.doc, s.anes, s.st].join(','))
+  const csv = '﻿' + [head, ...body].join('\n')
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' })
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = '日间手术日报_2026-11-02.csv'
+  a.click()
+  URL.revokeObjectURL(url)
+  ElMessage.success('日报已导出为 CSV 文件')
+}
+
+/* 手术安排行点击进入手术登记 */
+const openCase = (row) => {
+  if (!auth.hasModule('checkin')) {
+    ElMessage.warning(`当前角色「${auth.role.value.name}」无权访问【手术登记】`)
+    return
+  }
+  router.push('/checkin')
+}
 </script>
 
 <template>
   <div>
-    <PageHeader title="工作台" sub="日间手术中心 · 张敏 · 2026-11-02 星期一 · 数据截至 10:38">
+    <PageHeader title="工作台" :sub="`日间手术中心 · ${user?.name} · 2026-11-02 星期一 · 数据截至 ${stamp}`">
       <template #actions>
-        <el-button size="small" @click="toast('数据已刷新')">
+        <el-button size="small" @click="refresh">
           <IconSvg name="refresh" :size="13" />刷新数据
         </el-button>
-        <el-button size="small" @click="toast('日报已导出')">
+        <el-button size="small" @click="exportReport">
           <IconSvg name="down" :size="13" />导出日报
         </el-button>
       </template>
@@ -72,6 +119,8 @@ const toast = (m) => ElMessage.success(m)
         :unit="k.u"
         :delta="k.dt"
         :tone="k.tone"
+        class="kpi-click"
+        @click="goKpi(k)"
       />
     </div>
 
@@ -98,7 +147,7 @@ const toast = (m) => ElMessage.success(m)
 
         <SectionCard title="今日手术安排" tight>
           <template #right>共 11 台 · 已完成 9 台</template>
-          <el-table :data="schedules" style="width: 100%">
+          <el-table :data="schedules" style="width: 100%" @row-click="openCase">
             <el-table-column prop="room" label="手术间" width="64" />
             <el-table-column prop="time" label="时间" width="64" class-name="num" />
             <el-table-column prop="op" label="手术名称" min-width="200" show-overflow-tooltip />
@@ -149,3 +198,17 @@ const toast = (m) => ElMessage.success(m)
     </div>
   </div>
 </template>
+
+<style scoped>
+.kpi-click {
+  cursor: pointer;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.kpi-click:hover {
+  box-shadow: 0 4px 14px rgba(27, 111, 196, 0.16);
+  transform: translateY(-1px);
+}
+:deep(.el-table__row) {
+  cursor: pointer;
+}
+</style>

@@ -1,5 +1,6 @@
 <script setup>
-import { reactive } from 'vue'
+import { computed, reactive, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import PageHeader from '@/components/PageHeader.vue'
 import SectionCard from '@/components/SectionCard.vue'
@@ -8,20 +9,24 @@ import TagBox from '@/components/TagBox.vue'
 import StepsBar from '@/components/StepsBar.vue'
 import IconSvg from '@/components/IconSvg.vue'
 import { EXAMS } from '@/data/demo'
+import { useAuth } from '@/store/auth'
+
+const router = useRouter()
+const auth = useAuth()
 
 /* 麻醉评估流程环节 */
 const flowItems = ['术前访视', '气道评估', '麻醉风险分级(ASA)', '评估结论']
 
-/* 右侧：术前检查检验报告（最近 5 项） */
-const reports = EXAMS.slice(0, 5).map((e) => ({ nm: e.nm, rpt: e.rpt }))
+/* 右侧：术前检查检验报告（最近 5 项，点击查看） */
+const reports = EXAMS.slice(0, 5).map((e) => ({ nm: e.nm, rpt: e.rpt, cat: e.cat }))
 
 /* 评估环节配置 */
-const stages = [
+const stages = ref([
   { t1: '1. 术前访视', t2: '必填 6 项 · 护士/医师' },
   { t1: '2. 气道评估', t2: '必填 4 项 · 麻醉医师' },
   { t1: '3. 麻醉风险分级', t2: '必填 3 项 · 麻醉医师' },
   { t1: '4. 评估结论', t2: '必填 · 通过/不通过' }
-]
+])
 
 const form = reactive({
   height: '172 cm / 74 kg',
@@ -34,6 +39,43 @@ const form = reactive({
   plan: '拟行椎管内麻醉（L3-4 腰硬联合），局麻药选用 0.5% 罗哌卡因 15mg，术中监测血压、心率、血氧，备全身麻醉预案。'
 })
 
+/* 评估结论：ASA Ⅲ 级及以上判为需科主任复核 */
+const conclusion = computed(() => {
+  const lvl = form.asa.replace(/\s/g, '')
+  if (lvl.startsWith('Ⅰ')) return { text: '通过 · 可继续日间手术流程（下一步：手术预约）', tone: 'g' }
+  if (lvl.startsWith('Ⅱ')) return { text: '通过 · 可继续日间手术流程（下一步：手术预约）', tone: 'g' }
+  return { text: '需科主任复核 · 复核通过后方可继续日间手术流程', tone: 'o' }
+})
+
+const submitted = ref(false)
+
+const submit = () => {
+  if (!auth.can('anes:submit')) {
+    ElMessage.warning(`当前角色「${auth.role.value.name}」无「提交麻醉评估」权限`)
+    return
+  }
+  submitted.value = true
+  if (conclusion.value.tone === 'o') {
+    ElMessage.warning(`ASA ${form.asa} 已提交，需科主任复核`)
+  } else {
+    ElMessage.success('麻醉评估已提交，已生成手术预约待办')
+  }
+}
+
+/* 报告查看 */
+const reportVisible = ref(false)
+const reportRow = ref(null)
+const openReport = (row) => {
+  reportRow.value = row
+  reportVisible.value = true
+}
+
+/* 环节启用/停用 */
+const toggleStage = (s) => {
+  s.off = !s.off
+  ElMessage.success(`环节「${s.t1.replace(/^\d+\.\s*/, '')}」已${s.off ? '停用' : '启用'}`)
+}
+
 const toast = (m) => ElMessage.success(m)
 </script>
 
@@ -44,16 +86,21 @@ const toast = (m) => ElMessage.success(m)
       sub="麻醉医师按医院自定义流程评估 · 评估时同屏查看术前检查检验报告 · 未通过强制转退出管理"
     >
       <template #actions>
-        <el-button size="small" @click="toast('麻醉评估流程配置已打开')">
+        <el-button size="small" @click="router.push('/config')">
           <IconSvg name="cog" :size="13" />流程配置
         </el-button>
-        <el-button type="primary" size="small" @click="toast('麻醉评估已提交')">
+        <el-button v-perm="'anes:submit'" type="primary" size="small" @click="submit">
           <IconSvg name="ok" :size="13" />提交评估
         </el-button>
       </template>
     </PageHeader>
 
-    <PatientBand />
+    <PatientBand>
+      <template #extra>
+        <TagBox v-if="submitted" text="已提交" tone="g" />
+        <TagBox v-else text="待评估" tone="o" />
+      </template>
+    </PatientBand>
 
     <div style="height: 12px" />
 
@@ -64,7 +111,7 @@ const toast = (m) => ElMessage.success(m)
           <div style="display: flex; align-items: center; margin-bottom: 10px">
             <div style="font-weight: 700; font-size: 13px">麻醉评估流程</div>
             <span class="hint" style="margin-left: 10px">
-              当前流程共 4 个环节，由系统管理员在【参数配置 · 麻醉评估流程】中自定义，配置后即时生效，无需二次开发
+              当前流程共 {{ stages.length }} 个环节，由系统管理员在【参数配置 · 麻醉评估流程】中自定义，配置后即时生效，无需二次开发
             </span>
             <span style="margin-left: auto"><TagBox text="可配置" tone="t" /></span>
           </div>
@@ -124,16 +171,23 @@ const toast = (m) => ElMessage.success(m)
             <div class="hint" style="margin-bottom: 6px">麻醉计划</div>
             <el-input v-model="form.plan" type="textarea" :rows="3" resize="none" />
           </div>
-          <div class="result-bar" style="margin-top: 12px">
-            <IconSvg name="ok" :size="15" />评估结论：通过 · 可继续日间手术流程（下一步：手术预约）
+          <div class="result-bar" :class="{ warn: conclusion.tone === 'o' }" style="margin-top: 12px">
+            <IconSvg :name="conclusion.tone === 'g' ? 'ok' : 'warn'" :size="15" />
+            评估结论：{{ conclusion.text }}
           </div>
         </SectionCard>
       </div>
 
       <div>
         <SectionCard title="术前检查检验报告" tight>
-          <template #right><span class="link">全部</span></template>
-          <div v-for="r in reports" :key="r.nm" class="list-row" style="cursor: pointer">
+          <template #right><span class="link" @click="toast('已展示全部 7 项报告')">全部</span></template>
+          <div
+            v-for="r in reports"
+            :key="r.nm"
+            class="list-row"
+            style="cursor: pointer"
+            @click="openReport(r)"
+          >
             <div>
               <div class="t1">{{ r.nm }}</div>
               <div class="t2">{{ r.rpt }}</div>
@@ -154,10 +208,57 @@ const toast = (m) => ElMessage.success(m)
               <div class="t1">{{ s.t1 }}</div>
               <div class="t2">{{ s.t2 }}</div>
             </div>
-            <div class="rt"><TagBox text="启用" tone="g" /></div>
+            <div class="rt">
+              <span class="link" @click="toggleStage(s)">
+                <TagBox :text="s.off ? '已停用' : '启用'" :tone="s.off ? 'gy' : 'g'" />
+              </span>
+            </div>
           </div>
         </SectionCard>
       </div>
     </div>
+
+    <!-- 报告详情 -->
+    <el-dialog v-model="reportVisible" title="术前检查检验报告" width="520px">
+      <table v-if="reportRow" class="tb-plain">
+        <tbody>
+          <tr>
+            <td style="width: 92px; color: #7b8fa3">项目名称</td>
+            <td><b>{{ reportRow.nm }}</b></td>
+          </tr>
+          <tr>
+            <td style="color: #7b8fa3">类别</td>
+            <td>{{ reportRow.cat }}</td>
+          </tr>
+          <tr>
+            <td style="color: #7b8fa3">报告时间</td>
+            <td class="num">{{ reportRow.rpt }}</td>
+          </tr>
+          <tr>
+            <td style="color: #7b8fa3">结论</td>
+            <td>未见明显异常，可作为麻醉评估依据。</td>
+          </tr>
+        </tbody>
+      </table>
+      <template #footer>
+        <el-button size="small" @click="reportVisible = false">关闭</el-button>
+      </template>
+    </el-dialog>
   </div>
 </template>
+
+<style scoped>
+.tb-plain {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+.tb-plain td {
+  padding: 7px 14px;
+  border-bottom: 1px solid #eef2f7;
+  color: #33475c;
+}
+.tb-plain tr:last-child td {
+  border-bottom: none;
+}
+</style>

@@ -89,7 +89,7 @@ const hisLogs = [
     >
       <template #title-extra><span class="tag solid">▲ 条款 4</span></template>
       <template #actions>
-        <el-button type="primary" size="small" @click="toast('手术费用已提交')">
+        <el-button v-perm="'fee:submit'" type="primary" size="small" @click="toast('手术费用已提交，已同步至 HIS 住院费用清单')">
           <IconSvg name="save" :size="13" />保存并提交
         </el-button>
         <el-button size="small" @click="toast('费用清单已发送至打印')">

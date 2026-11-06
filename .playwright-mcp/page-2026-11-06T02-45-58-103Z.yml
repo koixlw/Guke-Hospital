@@ -1,0 +1,22 @@
+- generic [ref=f7e3]:
+  - banner [ref=f7e4]:
+    - generic [ref=f7e9]:
+      - generic [ref=f7e10]: 四川省骨科医院
+      - text: 预入出院（日间手术）管理系统
+    - navigation [ref=f7e11]:
+      - generic [ref=f7e12] [cursor=pointer]:
+        - text: 全部业务
+        - generic [ref=f7e13]: "0"
+    - generic [ref=f7e14]:
+      - generic [ref=f7e15]: 业务日期 2026-11-02
+      - button [ref=f7e18] [cursor=pointer]:
+        - emphasis [ref=f7e21]: ·
+  - generic [ref=f7e24]:
+    - complementary [ref=f7e25]:
+      - generic [ref=f7e26]:
+        - generic [ref=f7e27]: 当前角色
+        - generic [ref=f7e28]: 可见 0 个模块 ·
+    - main [ref=f7e29]:
+      - generic [ref=f7e30]:
+        - generic [ref=f7e31]: 工作台
+        - generic [ref=f7e32]: ·

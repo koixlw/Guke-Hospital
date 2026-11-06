@@ -1,0 +1,219 @@
+- generic [active] [ref=f6e1]:
+  - generic [ref=f6e119]:
+    - banner [ref=f6e120]:
+      - generic [ref=f6e125]:
+        - generic [ref=f6e126]: 四川省骨科医院
+        - text: 预入出院（日间手术）管理系统
+      - navigation [ref=f6e127]:
+        - generic [ref=f6e128] [cursor=pointer]:
+          - text: 全部业务
+          - generic [ref=f6e129]: "5"
+        - generic [ref=f6e130] [cursor=pointer]:
+          - text: 门诊业务
+          - generic [ref=f6e131]: "3"
+        - generic [ref=f6e132] [cursor=pointer]:
+          - text: 统计报表
+          - generic [ref=f6e133]: "1"
+      - generic [ref=f6e134]:
+        - generic [ref=f6e135]: 业务日期 2026-11-02
+        - button "王 王海涛 主任医师 · 手外科 / 显微外科" [ref=f6e138] [cursor=pointer]:
+          - generic [ref=f6e139]: 王
+          - generic [ref=f6e140]:
+            - generic [ref=f6e141]: 王海涛
+            - emphasis [ref=f6e142]: 主任医师 · 手外科 / 显微外科
+    - generic [ref=f6e145]:
+      - complementary [ref=f6e146]:
+        - generic [ref=f6e147]:
+          - generic [ref=f6e148]: 总览
+          - generic [ref=f6e149] [cursor=pointer]: 工作台
+        - generic [ref=f6e153]:
+          - generic [ref=f6e154]: 门诊·申请阶段
+          - generic [ref=f6e155] [cursor=pointer]: 术前检查及预约
+        - generic [ref=f6e159]:
+          - generic [ref=f6e160]: 评估阶段
+          - generic [ref=f6e161] [cursor=pointer]: 专科评估
+          - generic [ref=f6e165] [cursor=pointer]: 麻醉评估
+        - generic [ref=f6e169]:
+          - generic [ref=f6e170]: 统计报表
+          - generic [ref=f6e171] [cursor=pointer]: 手术查询
+        - generic [ref=f6e175]:
+          - generic [ref=f6e176]: 当前角色
+          - generic [ref=f6e177]: 专科医师
+          - generic [ref=f6e178]: 可见 5 个模块 · 本科室患者
+      - main [ref=f6e179]:
+        - generic [ref=f6e180]:
+          - generic [ref=f6e181]: 工作台
+          - generic [ref=f6e182]: 专科医师 · 王海涛
+        - generic [ref=f6e185]:
+          - generic [ref=f6e186]:
+            - generic [ref=f6e187]:
+              - generic [ref=f6e188]: 工作台
+              - generic [ref=f6e190]: 日间手术中心 · 王海涛 · 2026-11-02 星期一 · 数据截至 10:38
+            - generic [ref=f6e191]:
+              - button "刷新数据" [ref=f6e192] [cursor=pointer]
+              - button "导出日报" [ref=f6e196] [cursor=pointer]
+          - generic [ref=f6e200]:
+            - generic [ref=f6e201] [cursor=pointer]:
+              - generic [ref=f6e202]: 今日日间手术申请
+              - generic [ref=f6e203]: 24例
+              - generic [ref=f6e204]: 较昨日 +6 例
+            - generic [ref=f6e205] [cursor=pointer]:
+              - generic [ref=f6e206]: 待专科评估
+              - generic [ref=f6e207]: 6例
+              - generic [ref=f6e208]: 超时未评估 1 例
+            - generic [ref=f6e209] [cursor=pointer]:
+              - generic [ref=f6e210]: 待麻醉评估
+              - generic [ref=f6e211]: 5例
+              - generic [ref=f6e212]: 平均等待 3.2 小时
+            - generic [ref=f6e213] [cursor=pointer]:
+              - generic [ref=f6e214]: 待预约手术
+              - generic [ref=f6e215]: 4例
+              - generic [ref=f6e216]: 号源充足
+            - generic [ref=f6e217] [cursor=pointer]:
+              - generic [ref=f6e218]: 今日入院登记
+              - generic [ref=f6e219]: 8例
+              - generic [ref=f6e220]: 已报到 6 例
+            - generic [ref=f6e221] [cursor=pointer]:
+              - generic [ref=f6e222]: 今日手术完成
+              - generic [ref=f6e223]: 11例
+              - generic [ref=f6e224]: 台次利用率 86%
+          - generic [ref=f6e225]:
+            - generic [ref=f6e226]:
+              - generic [ref=f6e227]:
+                - generic [ref=f6e228]:
+                  - generic [ref=f6e230]: 日间手术全流程实时看板
+                  - generic [ref=f6e231]: 近 7 日平均在院时长 1.4 天
+                - generic [ref=f6e232]:
+                  - generic [ref=f6e233]:
+                    - generic [ref=f6e234]:
+                      - generic [ref=f6e236]: "24"
+                      - generic [ref=f6e237]: 申请
+                    - generic [ref=f6e238]:
+                      - generic [ref=f6e240]: "21"
+                      - generic [ref=f6e241]: 缴费冻结
+                    - generic [ref=f6e242]:
+                      - generic [ref=f6e244]: "19"
+                      - generic [ref=f6e245]: 术前检查
+                    - generic [ref=f6e246]:
+                      - generic [ref=f6e248]: "18"
+                      - generic [ref=f6e249]: 专科评估
+                    - generic [ref=f6e250]:
+                      - generic [ref=f6e252]: "15"
+                      - generic [ref=f6e253]: 麻醉评估
+                    - generic [ref=f6e254]:
+                      - generic [ref=f6e256]: "14"
+                      - generic [ref=f6e257]: 手术预约
+                    - generic [ref=f6e258]:
+                      - generic [ref=f6e260]: "12"
+                      - generic [ref=f6e261]: 入院登记
+                    - generic [ref=f6e262]:
+                      - generic [ref=f6e264]: "11"
+                      - generic [ref=f6e265]: 手术登记
+                    - generic [ref=f6e266]:
+                      - generic [ref=f6e268]: "11"
+                      - generic [ref=f6e269]: 术后结算
+                  - generic [ref=f6e270]:
+                    - generic [ref=f6e271]: ● 蓝色：已完成该环节
+                    - generic [ref=f6e272]: ● 橙色：当前集中环节
+                    - generic [ref=f6e273]: 流程断点自动预警：滞留超过 24 小时转红
+              - generic [ref=f6e274]:
+                - generic [ref=f6e275]:
+                  - generic [ref=f6e277]: 今日手术安排
+                  - generic [ref=f6e278]: 共 11 台 · 已完成 9 台
+                - generic [ref=f6e281]:
+                  - table [ref=f6e283]:
+                    - rowgroup [ref=f6e292]:
+                      - row [ref=f6e293]:
+                        - columnheader "手术间" [ref=f6e294]
+                        - columnheader "时间" [ref=f6e296]
+                        - columnheader "手术名称" [ref=f6e298]
+                        - columnheader "患者" [ref=f6e300]
+                        - columnheader "术者" [ref=f6e302]
+                        - columnheader "麻醉方式" [ref=f6e304]
+                        - columnheader "状态" [ref=f6e306]
+                  - table [ref=f6e312]:
+                    - rowgroup [ref=f6e321]:
+                      - row [ref=f6e322] [cursor=pointer]:
+                        - cell "OR-1" [ref=f6e323]
+                        - cell "08:30" [ref=f6e325]
+                        - cell "膝关节镜下半月板成形术" [ref=f6e327]
+                        - cell "王建国" [ref=f6e329]
+                        - cell "李国栋" [ref=f6e331]
+                        - cell "椎管内麻醉" [ref=f6e333]
+                        - cell "已完成" [ref=f6e335]
+                      - row [ref=f6e337] [cursor=pointer]:
+                        - cell "OR-1" [ref=f6e338]
+                        - cell "10:40" [ref=f6e340]
+                        - cell "腕管综合征切开减压术" [ref=f6e342]
+                        - cell "李秀兰" [ref=f6e344]
+                        - cell "王海涛" [ref=f6e346]
+                        - cell "臂丛神经阻滞" [ref=f6e348]
+                        - cell "待手术" [ref=f6e350]
+                      - row [ref=f6e352] [cursor=pointer]:
+                        - cell "OR-2" [ref=f6e353]
+                        - cell "09:10" [ref=f6e355]
+                        - cell "桡骨远端骨折闭合复位内固定术" [ref=f6e357]
+                        - cell "陈志强" [ref=f6e359]
+                        - cell "陈立新" [ref=f6e361]
+                        - cell "臂丛神经阻滞" [ref=f6e363]
+                        - cell "已完成" [ref=f6e365]
+                      - row [ref=f6e367] [cursor=pointer]:
+                        - cell "OR-2" [ref=f6e368]
+                        - cell "14:30" [ref=f6e370]
+                        - cell "肩关节镜下肩袖修补术" [ref=f6e372]
+                        - cell "张桂芳" [ref=f6e374]
+                        - cell "刘晓峰" [ref=f6e376]
+                        - cell "全身麻醉" [ref=f6e378]
+                        - cell "待手术" [ref=f6e380]
+                      - row [ref=f6e382] [cursor=pointer]:
+                        - cell "OR-3" [ref=f6e383]
+                        - cell "13:30" [ref=f6e385]
+                        - cell "腰椎间盘突出椎间孔镜髓核摘除术" [ref=f6e387]
+                        - cell "刘建华" [ref=f6e389]
+                        - cell "赵敏" [ref=f6e391]
+                        - cell "局部麻醉" [ref=f6e393]
+                        - cell "待手术" [ref=f6e395]
+            - generic [ref=f6e397]:
+              - generic [ref=f6e398]:
+                - generic [ref=f6e399]:
+                  - generic [ref=f6e401]: 我的待办
+                  - generic [ref=f6e402]: 共 16 项
+                - generic [ref=f6e403]:
+                  - generic [ref=f6e404] [cursor=pointer]:
+                    - generic [ref=f6e405]:
+                      - generic [ref=f6e406]: 麻醉评估待处理
+                      - generic [ref=f6e407]: 赵文轩 等 5 例
+                    - generic [ref=f6e408]: 5 例
+                  - generic [ref=f6e409] [cursor=pointer]:
+                    - generic [ref=f6e410]:
+                      - generic [ref=f6e411]: 专科评估超时未完成
+                      - generic [ref=f6e412]: 周雅琴 已等待 26 小时
+                    - generic [ref=f6e413]: 1 例
+                  - generic [ref=f6e414] [cursor=pointer]:
+                    - generic [ref=f6e415]:
+                      - generic [ref=f6e416]: 手术安排变动待通知
+                      - generic [ref=f6e417]: 陈志强 术间/时间变更
+                    - generic [ref=f6e418]: 1 例
+                  - generic [ref=f6e419] [cursor=pointer]:
+                    - generic [ref=f6e420]:
+                      - generic [ref=f6e421]: 入院前通知待确认
+                      - generic [ref=f6e422]: 今日 16:00 定时任务
+                    - generic [ref=f6e423]: 8 例
+                  - generic [ref=f6e424] [cursor=pointer]:
+                    - generic [ref=f6e425]:
+                      - generic [ref=f6e426]: 退出日间手术待审核
+                      - generic [ref=f6e427]: 患者电话告知不来手术
+                    - generic [ref=f6e428]: 1 例
+              - generic [ref=f6e429]:
+                - generic [ref=f6e430]: 短信通知状态（今日）
+                - generic [ref=f6e433]:
+                  - generic [ref=f6e434]:
+                    - generic [ref=f6e435]:
+                      - generic [ref=f6e436]: 发送成功
+                      - generic [ref=f6e437]: "37"
+                    - generic [ref=f6e438]:
+                      - generic [ref=f6e439]: 失败待重发
+                      - generic [ref=f6e440]: "2"
+                  - generic [ref=f6e441]: 短信平台：已联通 · 网关状态正常 定时任务：入院前通知 16:00 自动执行 失败原因：号码空号 1 条、关机 1 条
+  - alert [ref=f6e442]:
+    - paragraph [ref=f6e446]: 欢迎回来，王海涛

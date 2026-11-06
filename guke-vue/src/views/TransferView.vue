@@ -1,13 +1,15 @@
 <script setup>
-import { reactive } from 'vue'
-import { ElMessage } from 'element-plus'
+import { computed, reactive, ref } from 'vue'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import PageHeader from '@/components/PageHeader.vue'
 import SectionCard from '@/components/SectionCard.vue'
 import PatientBand from '@/components/PatientBand.vue'
 import TagBox from '@/components/TagBox.vue'
 import IconSvg from '@/components/IconSvg.vue'
 import { CUR, TRANSFER_REASON, TRANSFER_WAY } from '@/data/demo'
+import { useAuth } from '@/store/auth'
 
+const auth = useAuth()
 const toast = (m) => ElMessage.success(m)
 
 const form = reactive({
@@ -38,15 +40,42 @@ const impacts = [
 ]
 
 /* 当前住院信息 */
-const stay = [
+const transferred = ref(false)
+
+const stay = computed(() => [
   { k: '住院号', v: CUR.inp, mono: true },
   { k: '病区 / 床位', v: `38 病区 / ${CUR.bed}` },
   { k: '入院时间', v: '2026-11-02 10:12' },
-  { k: '住院类型', tag: '日间手术住院', tone: 'b' },
+  { k: '住院类型', tag: transferred.value ? '普通住院' : '日间手术住院', tone: transferred.value ? 'g' : 'b' },
   { k: '手术状态', tag: '已完成', tone: 'gy', text: '2026-11-02 10:40' },
   { k: '已发生费用', v: '3,978.00 元' },
   { k: '储值金余额', v: '1,622.00 元（转入住院储值金）' }
-]
+])
+
+/* 转为普通住院 */
+const doTransfer = async () => {
+  if (!auth.can('transfer:submit')) {
+    ElMessage.warning(`当前角色「${auth.role.value.name}」无「转普通住院」操作权限`)
+    return
+  }
+  if (transferred.value) {
+    ElMessage.info('该患者已转为普通住院，无需重复操作')
+    return
+  }
+  try {
+    await ElMessageBox.confirm(
+      `确认将 ${CUR.name}（${CUR.inp}）由「日间手术住院」转为「普通住院」？转出后日间手术路径终止。`,
+      '转为普通住院',
+      { confirmButtonText: '确认转出', cancelButtonText: '取消', type: 'warning' }
+    )
+  } catch {
+    return
+  }
+  transferred.value = true
+  form.fromType = '日间手术住院'
+  form.toType = '普通住院'
+  ElMessage.success('已转为普通住院：住院类型已变更，储值金与费用同步结转，退出记录已写入')
+}
 </script>
 
 <template>
@@ -57,7 +86,7 @@ const stay = [
     >
       <template #title-extra><span class="tag solid">▲ 条款 3</span></template>
       <template #actions>
-        <el-button type="primary" size="small" @click="toast('已转为普通住院')">
+        <el-button v-perm="'transfer:submit'" type="primary" size="small" @click="doTransfer">
           <IconSvg name="swap" :size="13" />转为普通住院
         </el-button>
         <el-button size="small" @click="toast('已取消')">取消</el-button>
@@ -65,7 +94,9 @@ const stay = [
     </PageHeader>
 
     <PatientBand>
-      <template #extra><TagBox text="日间手术住院" tone="b" /></template>
+      <template #extra>
+        <TagBox :text="transferred ? '普通住院' : '日间手术住院'" :tone="transferred ? 'g' : 'b'" />
+      </template>
     </PatientBand>
 
     <div style="height: 12px" />

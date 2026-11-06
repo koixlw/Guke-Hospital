@@ -11,3 +11,5 @@ pnpm-debug.log*
 .idea
 .vscode/*
 !.vscode/extensions.json
+.chrome-shot-profile
+playwright-mcp/

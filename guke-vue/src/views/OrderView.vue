@@ -77,7 +77,7 @@ const downstream = [
     >
       <template #title-extra><span class="tag solid" style="margin-left: 2px">▲ 条款 5</span></template>
       <template #actions>
-        <el-button type="primary" size="small" @click="toast('手术医嘱已保存并提交')">
+        <el-button v-perm="'order:submit'" type="primary" size="small" @click="toast('手术医嘱已保存并提交，药品已记账')">
           <IconSvg name="save" :size="13" />保存并提交
         </el-button>
         <el-button size="small" @click="toast('医嘱单已发送至打印')">

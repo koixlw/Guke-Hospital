@@ -40,7 +40,12 @@ const ICONS = {
   money: 'M12 3v18M8 7h6a3 3 0 0 1 0 6H8h7a3 3 0 0 1 0 6H8',
   scan: 'M4 8V5a1 1 0 0 1 1-1h3M17 4h3a1 1 0 0 1 1 1v3M20 17v3a1 1 0 0 1-1 1h-3M7 21H4a1 1 0 0 1-1-1v-3M4 12h16',
   pin: 'M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11zM12 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z',
-  down: 'M12 4v12M7 12l5 5 5-5M4 20h16'
+  down: 'M12 4v12M7 12l5 5 5-5M4 20h16',
+  lock: 'M6 11h12v9H6v-9zM9 11V7.5a3 3 0 0 1 6 0V11M12 15v2',
+  logout: 'M15 4h4v16h-4M11 8l-4 4 4 4M7 12h9',
+  lock2: 'M5 11h14v9H5v-9zM8 11V7a4 4 0 0 1 8 0v4',
+  home: 'M4 11l8-7 8 7v9H4v-9zM10 20v-6h4v6',
+  filter: 'M3 5h18l-7 8v6l-4 2v-8L3 5z'
 }
 
 const d = computed(() => ICONS[props.name] || ICONS.info)

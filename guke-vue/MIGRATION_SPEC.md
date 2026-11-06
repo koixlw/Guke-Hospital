@@ -9,9 +9,11 @@
 
 ```
 src/
-  App.vue                 应用外壳（顶栏 / 侧边栏 / 面包屑 / 路由出口）
-  main.js                 入口（Element Plus 全量注册 + 中文语言包）
-  router/index.js         路由表 + NAV 导航结构 + TITLES / CRUMB
+  App.vue                 应用外壳（顶栏 / 侧边栏 / 面包屑 / 路由出口 / 我的权限）
+  main.js                 入口（Element Plus 全量注册 + 中文语言包 + v-perm 指令）
+  router/index.js         路由表 + 全局守卫 + NAV 导航结构 + TOP_TABS + TITLES / CRUMB
+  store/auth.js           登录态与权限判定（login / logout / can / hasModule）
+  data/permissions.js     角色定义、模块清单、操作点清单、演示账号
   data/demo.js            全部演示数据（患者、检验、流水、短信、组套、字典…）
   utils/format.js         money() / statusType() / toneToTagType()
   styles/index.css        设计令牌 + Element Plus 主题变量覆盖 + 全部业务样式类
@@ -80,16 +82,41 @@ src/
 
 ## 5. 数据引用
 
-全部演示数据在 `@/data/demo.js`：
+业务演示数据在 `@/data/demo.js`：
 
 ```
-HOSP SYS TODAY DEPTS DOCTORS NURSES OPS ANES MODES ROLES TOP_TABS
+HOSP SYS TODAY DEPTS DOCTORS NURSES OPS ANES MODES
 PATIENTS CUR EXAMS FLOWS SMS GROUPS ORDER_TPL FAIL_REASON QUIT_REASON
 TRANSFER_REASON TRANSFER_WAY
 ```
 
+角色与权限数据在 `@/data/permissions.js`：
+
+```
+MODULES      全部模块（与路由 key 一致）
+ACTIONS      可授权的操作点 `模块:操作` → 中文说明
+ROLE_DEFS    角色定义（name / scope / desc / modules / actions）
+USERS        演示账号
+roleOf()     取角色定义
+```
+
 - 金额格式化：`import { money } from '@/utils/format'` → `money(4840)` → `"4,840.00"`
 - 页面内独有的静态数组（如今日手术安排、检验报告明细、接口日志等）直接写在该页面的 `<script setup>` 里。
+
+### 权限使用
+
+```js
+import { useAuth } from '@/store/auth'
+const auth = useAuth()
+
+auth.hasModule('pay')        // 模块可见（菜单 / 路由）
+auth.can('pay:settle')       // 操作可执行
+auth.role.value.name         // 当前角色名
+auth.user.value.name         // 当前登录人姓名
+```
+
+模板中用全局指令 `v-perm` 控制按钮渲染：`<el-button v-perm="'pay:settle'">充值</el-button>`。
+每个路由在 `src/router/index.js` 中通过 `meta.module` 声明所属模块，由全局守卫统一校验。
 
 ---
 

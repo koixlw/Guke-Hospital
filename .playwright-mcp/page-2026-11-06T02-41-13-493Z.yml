@@ -1,0 +1,158 @@
+- generic [ref=f5e3]:
+  - banner [ref=f5e4]:
+    - generic [ref=f5e9]:
+      - generic [ref=f5e10]: 四川省骨科医院
+      - text: 预入出院（日间手术）管理系统
+    - navigation [ref=f5e11]:
+      - generic [ref=f5e12] [cursor=pointer]:
+        - text: 全部业务
+        - generic [ref=f5e13]: "18"
+      - generic [ref=f5e14] [cursor=pointer]:
+        - text: 门诊业务
+        - generic [ref=f5e15]: "5"
+      - generic [ref=f5e16] [cursor=pointer]:
+        - text: 住院业务
+        - generic [ref=f5e17]: "4"
+      - generic [ref=f5e18] [cursor=pointer]:
+        - text: 手术业务
+        - generic [ref=f5e19]: "6"
+      - generic [ref=f5e20] [cursor=pointer]:
+        - text: 统计报表
+        - generic [ref=f5e21]: "1"
+      - generic [ref=f5e22] [cursor=pointer]:
+        - text: 系统管理
+        - generic [ref=f5e23]: "1"
+    - generic [ref=f5e24]:
+      - generic [ref=f5e25]: 业务日期 2026-11-02
+      - button "系 系统管理员 管理员 · 信息中心" [ref=f5e28] [cursor=pointer]:
+        - generic [ref=f5e29]: 系
+        - generic [ref=f5e30]:
+          - generic [ref=f5e31]: 系统管理员
+          - emphasis [ref=f5e32]: 管理员 · 信息中心
+  - generic [ref=f5e35]:
+    - complementary [ref=f5e36]:
+      - generic [ref=f5e37]:
+        - generic [ref=f5e38]: 总览
+        - generic [ref=f5e39] [cursor=pointer]: 工作台
+      - generic [ref=f5e43]:
+        - generic [ref=f5e44]: 门诊·申请阶段
+        - generic [ref=f5e45] [cursor=pointer]: 日间手术申请
+        - generic [ref=f5e49] [cursor=pointer]:
+          - generic [ref=f5e52]: 诊间缴费记账
+          - generic [ref=f5e53]: ▲
+        - generic [ref=f5e54] [cursor=pointer]: 术前检查及预约
+      - generic [ref=f5e58]:
+        - generic [ref=f5e59]: 评估阶段
+        - generic [ref=f5e60] [cursor=pointer]: 专科评估
+        - generic [ref=f5e64] [cursor=pointer]: 麻醉评估
+      - generic [ref=f5e68]:
+        - generic [ref=f5e69]: 预约·通知
+        - generic [ref=f5e70] [cursor=pointer]: 预约通知
+        - generic [ref=f5e74] [cursor=pointer]: 入院前通知
+      - generic [ref=f5e78]:
+        - generic [ref=f5e79]: 住院环节
+        - generic [ref=f5e80] [cursor=pointer]:
+          - generic [ref=f5e83]: 入院登记
+          - generic [ref=f5e84]: ▲
+        - generic [ref=f5e85] [cursor=pointer]:
+          - generic [ref=f5e88]: 转普通入院
+          - generic [ref=f5e89]: ▲
+      - generic [ref=f5e90]:
+        - generic [ref=f5e91]: 手术环节
+        - generic [ref=f5e92] [cursor=pointer]: 手术安排
+        - generic [ref=f5e96] [cursor=pointer]: 手术登记
+        - generic [ref=f5e100] [cursor=pointer]:
+          - generic [ref=f5e103]: 手术费用
+          - generic [ref=f5e104]: ▲
+        - generic [ref=f5e105] [cursor=pointer]:
+          - generic [ref=f5e108]: 手术医嘱
+          - generic [ref=f5e109]: ▲
+      - generic [ref=f5e110]:
+        - generic [ref=f5e111]: 管理与统计
+        - generic [ref=f5e112] [cursor=pointer]: 手术管理
+        - generic [ref=f5e116] [cursor=pointer]: 退出日间手术
+      - generic [ref=f5e120]:
+        - generic [ref=f5e121]: 统计报表
+        - generic [ref=f5e122] [cursor=pointer]: 手术查询
+      - generic [ref=f5e126]:
+        - generic [ref=f5e127]: 系统设置
+        - generic [ref=f5e128] [cursor=pointer]: 参数配置
+      - generic [ref=f5e132]:
+        - generic [ref=f5e133]: 当前角色
+        - generic [ref=f5e134]: 系统管理员
+        - generic [ref=f5e135]: 可见 18 个模块 · 配置数据（不含患者诊疗数据）
+    - main [ref=f5e136]:
+      - generic [ref=f5e137]:
+        - generic [ref=f5e138]: 工作台
+        - generic [ref=f5e139]: 系统管理员 · 系统管理员
+      - generic [ref=f5e142]:
+        - generic [ref=f5e143]:
+          - generic [ref=f5e144]:
+            - generic [ref=f5e145]: 参数配置
+            - generic [ref=f5e147]: 业务参数界面化配置 · 字典管理 · 角色权限 · 配置即时生效，无需二次开发
+          - generic [ref=f5e148]:
+            - button "还原默认" [ref=f5e149] [cursor=pointer]
+            - button "保存配置" [ref=f5e153] [cursor=pointer]
+        - generic [ref=f5e157]:
+          - generic [ref=f5e158]:
+            - generic [ref=f5e159]:
+              - generic [ref=f5e160]: 参数分类
+              - generic [ref=f5e164]:
+                - generic [ref=f5e165] [cursor=pointer]: 业务参数
+                - generic [ref=f5e168] [cursor=pointer]: 麻醉评估流程
+                - generic [ref=f5e171] [cursor=pointer]: 字典管理
+                - generic [ref=f5e174] [cursor=pointer]: 角色权限
+                - generic [ref=f5e177] [cursor=pointer]: 短信模板
+            - generic [ref=f5e180]:
+              - generic [ref=f5e181]: 配置变更记录
+              - generic [ref=f5e185]:
+                - generic [ref=f5e187]:
+                  - generic [ref=f5e188]: 入院前提前通知天数 2 → 1
+                  - generic [ref=f5e189]: 系统管理员 · 2026-10-20 09:12
+                - generic [ref=f5e191]:
+                  - generic [ref=f5e192]: 麻醉评估流程新增「气道评估」环节
+                  - generic [ref=f5e193]: 系统管理员 · 2026-10-18 15:40
+          - generic [ref=f5e195]:
+            - generic [ref=f5e196]:
+              - generic [ref=f5e198]: 业务参数
+              - generic [ref=f5e199]: 参数修改即时生效
+            - generic [ref=f5e202]:
+              - table [ref=f5e204]:
+                - rowgroup [ref=f5e210]:
+                  - row [ref=f5e211]:
+                    - columnheader "参数名称" [ref=f5e212]
+                    - columnheader "当前值" [ref=f5e214]
+                    - columnheader "说明" [ref=f5e216]
+                    - columnheader "操作" [ref=f5e218]
+              - table [ref=f5e224]:
+                - rowgroup [ref=f5e230]:
+                  - row [ref=f5e231]:
+                    - cell "入院前通知提前天数" [ref=f5e232]
+                    - cell "1 天" [ref=f5e234]
+                    - cell "默认提前 1 天自动发送入院通知短信" [ref=f5e236]
+                    - cell "修改" [ref=f5e238]
+                  - row [ref=f5e240]:
+                    - cell "口服抗凝剂停药天数" [ref=f5e241]
+                    - cell "7 天" [ref=f5e243]
+                    - cell "停药不足该天数自动拦截日间手术申请" [ref=f5e245]
+                    - cell "修改" [ref=f5e247]
+                  - row [ref=f5e249]:
+                    - cell "入院前通知发送时间" [ref=f5e250]
+                    - cell "16:00" [ref=f5e252]
+                    - cell "定时任务每日执行时间" [ref=f5e254]
+                    - cell "修改" [ref=f5e256]
+                  - row [ref=f5e258]:
+                    - cell "预约成功短信发送时机" [ref=f5e259]
+                    - cell "预约完成时" [ref=f5e261]
+                    - cell "可配置为预约完成时或次日 09:00" [ref=f5e263]
+                    - cell "修改" [ref=f5e265]
+                  - row [ref=f5e267]:
+                    - cell "手术安排一致性校验" [ref=f5e268]
+                    - cell "开启" [ref=f5e270]
+                    - cell "安排与预约不一致时自动生成通知待办" [ref=f5e272]
+                    - cell "修改" [ref=f5e274]
+                  - row [ref=f5e276]:
+                    - cell "短信失败重试次数" [ref=f5e277]
+                    - cell "2 次" [ref=f5e279]
+                    - cell "失败后转人工电话通知并留痕" [ref=f5e281]
+                    - cell "修改" [ref=f5e283]

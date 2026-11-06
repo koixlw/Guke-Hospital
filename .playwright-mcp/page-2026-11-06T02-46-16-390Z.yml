@@ -1,0 +1,69 @@
+- generic [ref=f7e37]:
+  - generic [ref=f7e38]:
+    - heading "用户登录" [level=2] [ref=f7e39]
+    - paragraph [ref=f7e40]: 请使用医院统一账号登录，不同岗位登录后可见模块与可执行操作不同
+  - generic [ref=f7e41]:
+    - generic [ref=f7e42]:
+      - generic [ref=f7e43]: 账号
+      - textbox "账号" [ref=f7e50]:
+        - /placeholder: 请输入账号
+        - text: wanghaitao
+    - generic [ref=f7e51]:
+      - generic [ref=f7e52]: 密码
+      - generic [ref=f7e55]:
+        - textbox "密码" [ref=f7e59]:
+          - /placeholder: 请输入密码
+          - text: "123456"
+        - generic [ref=f7e61] [cursor=pointer]
+    - button "登 录" [ref=f7e65] [cursor=pointer]
+  - generic [ref=f7e67]: 演示账号（点击自动填充）
+  - generic [ref=f7e69]:
+    - generic [ref=f7e70] [cursor=pointer]:
+      - generic [ref=f7e71]: 张
+      - generic [ref=f7e72]:
+        - generic [ref=f7e73]: 张敏
+        - emphasis [ref=f7e74]: 日间手术中心 · 日间手术中心
+      - code [ref=f7e75]: zhangmin
+    - generic [ref=f7e76] [cursor=pointer]:
+      - generic [ref=f7e77]: 李
+      - generic [ref=f7e78]:
+        - generic [ref=f7e79]: 李国栋
+        - emphasis [ref=f7e80]: 门急诊医生 · 关节外科门诊
+      - code [ref=f7e81]: liguodong
+    - generic [ref=f7e82] [cursor=pointer]:
+      - generic [ref=f7e83]: 刘
+      - generic [ref=f7e84]:
+        - generic [ref=f7e85]: 刘芳
+        - emphasis [ref=f7e86]: 收费人员 · 收费处
+      - code [ref=f7e87]: liufang
+    - generic [ref=f7e88] [cursor=pointer]:
+      - generic [ref=f7e89]: 王
+      - generic [ref=f7e90]:
+        - generic [ref=f7e91]: 王海涛
+        - emphasis [ref=f7e92]: 专科医师 · 手外科 / 显微外科
+      - code [ref=f7e93]: wanghaitao
+    - generic [ref=f7e94] [cursor=pointer]:
+      - generic [ref=f7e95]: 周
+      - generic [ref=f7e96]:
+        - generic [ref=f7e97]: 周文斌
+        - emphasis [ref=f7e98]: 麻醉医师 · 麻醉科
+      - code [ref=f7e99]: zhouwenbin
+    - generic [ref=f7e100] [cursor=pointer]:
+      - generic [ref=f7e101]: 唐
+      - generic [ref=f7e102]:
+        - generic [ref=f7e103]: 唐雪梅
+        - emphasis [ref=f7e104]: 手术室人员 · 手术室
+      - code [ref=f7e105]: tangxuemei
+    - generic [ref=f7e106] [cursor=pointer]:
+      - generic [ref=f7e107]: 何
+      - generic [ref=f7e108]:
+        - generic [ref=f7e109]: 何静
+        - emphasis [ref=f7e110]: 住院登记处 / 护士 · 住院登记处
+      - code [ref=f7e111]: heyong
+    - generic [ref=f7e112] [cursor=pointer]:
+      - generic [ref=f7e113]: 系
+      - generic [ref=f7e114]:
+        - generic [ref=f7e115]: 系统管理员
+        - emphasis [ref=f7e116]: 系统管理员 · 信息中心
+      - code [ref=f7e117]: admin
+  - generic [ref=f7e118]: 演示环境所有账号密码均为 123456（管理员为 admin123），登录后可体验不同角色的权限差异。

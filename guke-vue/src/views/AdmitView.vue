@@ -1,13 +1,15 @@
 <script setup>
 import { reactive, ref } from 'vue'
-import { ElMessage } from 'element-plus'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import PageHeader from '@/components/PageHeader.vue'
 import SectionCard from '@/components/SectionCard.vue'
 import PatientBand from '@/components/PatientBand.vue'
 import TagBox from '@/components/TagBox.vue'
 import InfoList from '@/components/InfoList.vue'
 import IconSvg from '@/components/IconSvg.vue'
+import { useAuth } from '@/store/auth'
 
+const auth = useAuth()
 const toast = (m) => ElMessage.success(m)
 
 /* 住院证号：支持扫码 / 刷身份证 / 手工输入调入 */
@@ -55,6 +57,54 @@ const checks = [
   { k: '专项储值金', v: '2,800.00 → 住院储值金' },
   { k: '检查检验报告', v: '7 份全部关联' }
 ]
+
+/* ================= 登记流程状态 ================= */
+const registered = ref(true)
+
+/* 扫码调入 */
+const scan = () => {
+  certNo.value = 'ZZ202611020088'
+  ElMessage.success('已扫码调入住院证 ZZ202611020088')
+}
+
+/* 从 HIS 调入住院证 */
+const loadFromHis = () => {
+  if (!certNo.value.trim()) {
+    ElMessage.warning('请先输入或扫描住院证号')
+    return
+  }
+  ElMessage.success(`已从 HIS 调入住院证 ${certNo.value}，申请单、报告与储值金自动带出`)
+}
+
+/* 确认登记并回写 HIS */
+const doRegister = async () => {
+  if (!auth.can('admit:register')) {
+    ElMessage.warning(`当前角色「${auth.role.value.name}」无「确认入院登记」权限`)
+    return
+  }
+  if (registered.value) {
+    /* 已登记：重新回写 HIS 并追加一致性校验日志 */
+    logs.push({
+      t1: '住院登记信息回写 HIS（复核）',
+      t2: `HIS 入院登记接口 · ${form.admitAt} · 耗时 168ms`,
+      tag: '成功',
+      tone: 'g'
+    })
+    ElMessage.success('住院登记信息已重新回写 HIS，一致性校验通过')
+    return
+  }
+  try {
+    await ElMessageBox.confirm(
+      `确认登记 ${form.inp} 并回写 HIS？登记成功后申请单、报告与储值金同步转入住院。`,
+      '确认入院登记',
+      { confirmButtonText: '确认登记', cancelButtonText: '取消', type: 'warning' }
+    )
+  } catch {
+    return
+  }
+  registered.value = true
+  ElMessage.success('入院登记成功，已回写 HIS，申请单 / 报告 / 储值金随患者转入住院')
+}
 </script>
 
 <template>
@@ -65,10 +115,10 @@ const checks = [
     >
       <template #title-extra><span class="tag solid">▲ 条款 2</span></template>
       <template #actions>
-        <el-button size="small" @click="toast('已扫码调入住院证')">
+        <el-button size="small" @click="scan">
           <IconSvg name="scan" :size="13" />扫码调入
         </el-button>
-        <el-button type="primary" size="small" @click="toast('入院登记成功，已回写 HIS')">
+        <el-button v-perm="'admit:register'" type="primary" size="small" @click="doRegister">
           <IconSvg name="ok" :size="13" />确认登记并回写 HIS
         </el-button>
       </template>
@@ -78,7 +128,7 @@ const checks = [
       <div style="display: flex; gap: 10px; align-items: center">
         <span style="font-size: 12.5px; color: #5b6b7f">住院证号</span>
         <el-input v-model="certNo" style="width: 210px; flex: 0 0 210px" />
-        <el-button size="small" @click="toast('已从 HIS 调入住院证')">
+        <el-button size="small" @click="loadFromHis">
           <IconSvg name="refresh" :size="13" />从 HIS 调入住院证
         </el-button>
         <span style="width: 1px; height: 20px; background: var(--line)" />

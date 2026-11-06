@@ -1,0 +1,87 @@
+- generic [ref=f6e3]:
+  - generic [ref=f6e5]:
+    - generic [ref=f6e10]:
+      - generic [ref=f6e11]: 四川省骨科医院
+      - text: 预入出院（日间手术）管理系统
+    - heading "预入出院（日间手术） 全流程数字化管理平台" [level=1] [ref=f6e12]: 预入出院（日间手术）全流程数字化管理平台
+    - paragraph [ref=f6e13]: 覆盖门诊申请、缴费记账、术前检查、专科与麻醉评估、预约通知、入院登记、手术安排、费用与医嘱、 转普通住院与退出日间路径的完整闭环，与 HIS、LIS、PACS、医技预约及收费系统一体化集成。
+    - list [ref=f6e14]:
+      - listitem [ref=f6e15]: 申请单为全流程唯一业务载体，全环节可追溯
+      - listitem [ref=f6e18]: 储值金冻结 — 转住院结转 — 门诊结算，资金全程闭环
+      - listitem [ref=f6e21]: 角色权限最小化配置，患者数据按科室隔离
+      - listitem [ref=f6e24]: 关键业务参数界面化配置，配置即时生效
+    - generic [ref=f6e27]:
+      - generic [ref=f6e28]: 业务日期 2026-11-02
+      - generic [ref=f6e29]: ·
+      - generic [ref=f6e30]: 演示版本 v1.0
+      - generic [ref=f6e31]: ·
+      - generic [ref=f6e32]: 四川省骨科医院 信息中心
+  - generic [ref=f6e34]:
+    - generic [ref=f6e35]:
+      - heading "用户登录" [level=2] [ref=f6e36]
+      - paragraph [ref=f6e37]: 请使用医院统一账号登录，不同岗位登录后可见模块与可执行操作不同
+    - generic [ref=f6e38]:
+      - generic [ref=f6e39]:
+        - generic [ref=f6e40]: 账号
+        - textbox "账号" [ref=f6e47]:
+          - /placeholder: 请输入账号
+          - text: wanghaitao
+      - generic [ref=f6e48]:
+        - generic [ref=f6e49]: 密码
+        - generic [ref=f6e52]:
+          - textbox "密码" [ref=f6e56]:
+            - /placeholder: 请输入密码
+            - text: "123456"
+          - generic [ref=f6e58] [cursor=pointer]
+      - button "登 录" [ref=f6e62] [cursor=pointer]
+    - generic [ref=f6e64]: 演示账号（点击自动填充）
+    - generic [ref=f6e66]:
+      - generic [ref=f6e67] [cursor=pointer]:
+        - generic [ref=f6e68]: 张
+        - generic [ref=f6e69]:
+          - generic [ref=f6e70]: 张敏
+          - emphasis [ref=f6e71]: 日间手术中心 · 日间手术中心
+        - code [ref=f6e72]: zhangmin
+      - generic [ref=f6e73] [cursor=pointer]:
+        - generic [ref=f6e74]: 李
+        - generic [ref=f6e75]:
+          - generic [ref=f6e76]: 李国栋
+          - emphasis [ref=f6e77]: 门急诊医生 · 关节外科门诊
+        - code [ref=f6e78]: liguodong
+      - generic [ref=f6e79] [cursor=pointer]:
+        - generic [ref=f6e80]: 刘
+        - generic [ref=f6e81]:
+          - generic [ref=f6e82]: 刘芳
+          - emphasis [ref=f6e83]: 收费人员 · 收费处
+        - code [ref=f6e84]: liufang
+      - generic [ref=f6e85] [cursor=pointer]:
+        - generic [ref=f6e86]: 王
+        - generic [ref=f6e87]:
+          - generic [ref=f6e88]: 王海涛
+          - emphasis [ref=f6e89]: 专科医师 · 手外科 / 显微外科
+        - code [ref=f6e90]: wanghaitao
+      - generic [ref=f6e91] [cursor=pointer]:
+        - generic [ref=f6e92]: 周
+        - generic [ref=f6e93]:
+          - generic [ref=f6e94]: 周文斌
+          - emphasis [ref=f6e95]: 麻醉医师 · 麻醉科
+        - code [ref=f6e96]: zhouwenbin
+      - generic [ref=f6e97] [cursor=pointer]:
+        - generic [ref=f6e98]: 唐
+        - generic [ref=f6e99]:
+          - generic [ref=f6e100]: 唐雪梅
+          - emphasis [ref=f6e101]: 手术室人员 · 手术室
+        - code [ref=f6e102]: tangxuemei
+      - generic [ref=f6e103] [cursor=pointer]:
+        - generic [ref=f6e104]: 何
+        - generic [ref=f6e105]:
+          - generic [ref=f6e106]: 何静
+          - emphasis [ref=f6e107]: 住院登记处 / 护士 · 住院登记处
+        - code [ref=f6e108]: heyong
+      - generic [ref=f6e109] [cursor=pointer]:
+        - generic [ref=f6e110]: 系
+        - generic [ref=f6e111]:
+          - generic [ref=f6e112]: 系统管理员
+          - emphasis [ref=f6e113]: 系统管理员 · 信息中心
+        - code [ref=f6e114]: admin
+    - generic [ref=f6e115]: 演示环境所有账号密码均为 123456（管理员为 admin123），登录后可体验不同角色的权限差异。

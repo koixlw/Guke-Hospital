@@ -1,0 +1,2 @@
+[    1879ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://127.0.0.1:5175/src/views/ExamView.vue:0
+[    1882ms] [ERROR] [nav] 跳转失败 /exam TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:5175/src/views/ExamView.vue @ http://127.0.0.1:5175/src/App.vue?t=1793933705885:109

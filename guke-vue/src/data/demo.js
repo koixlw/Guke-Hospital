@@ -34,16 +34,7 @@ export const OPS = [
 export const ANES = ['椎管内麻醉', '全身麻醉', '臂丛神经阻滞', '局部麻醉', '腰丛+坐骨神经阻滞']
 export const MODES = ['手术麻醉', '手术不麻醉', '麻醉不手术']
 
-export const ROLES = [
-  '日间手术中心 · 张敏',
-  '门急诊医生 · 李国栋',
-  '收费人员 · 刘芳',
-  '麻醉医师 · 周文斌',
-  '手术室 · 唐雪梅',
-  '系统管理员 · admin'
-]
-
-export const TOP_TABS = ['门诊业务', '住院业务', '手术业务', '统计报表', '系统管理']
+/* 角色 / 权限 / 演示账号已迁移至 @/data/permissions */
 
 /* 患者主数据 */
 export const PATIENTS = [

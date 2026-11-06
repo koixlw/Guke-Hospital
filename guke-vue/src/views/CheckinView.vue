@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import PageHeader from '@/components/PageHeader.vue'
 import SectionCard from '@/components/SectionCard.vue'
@@ -10,7 +10,11 @@ import IconSvg from '@/components/IconSvg.vue'
 
 const toast = (m) => ElMessage.success(m)
 
-/* 报到方式 */
+/* 报到方式（单选） */
+const WAYS = ['扫申请单条码', '刷医保卡', '刷就诊卡', '刷身份证', '手工输入病历号', '手工输入申请单号']
+const way = ref(WAYS[0])
+
+/* 申请单号 / 病历号 */
 const applyNo = ref('DZ20261102007')
 
 /* 术前检查检验报告 */
@@ -28,13 +32,36 @@ const drugs = [
   { nm: '注射用头孢呋辛钠', spec: '1.5g', dose: '1.5g', way: '静脉滴注（术前 30 分钟）' }
 ]
 
+/* 报到状态 */
+const checkedIn = ref(true)
+const checkinAt = ref('2026-11-02 08:12')
+
 /* 报到信息 */
-const checkin = [
-  { k: '报到时间', v: '2026-11-02 08:12' },
-  { k: '报到方式', v: '扫申请单条码' },
+const checkin = computed(() => [
+  { k: '报到时间', v: checkedIn.value ? checkinAt.value : '—' },
+  { k: '报到方式', v: way.value },
   { k: '报到护士', v: '何静' },
   { k: '手术间 / 台次', v: '1 间 / 第 1 台' }
-]
+])
+
+/* 报到登记 */
+const doCheckin = () => {
+  if (!applyNo.value.trim()) {
+    ElMessage.warning('请先扫码或输入申请单号 / 病历号')
+    return
+  }
+  checkedIn.value = true
+  checkinAt.value = '2026-11-02 08:12'
+  ElMessage.success(`报到登记成功（${way.value}）`)
+}
+
+/* 查看报告 */
+const reportVisible = ref(false)
+const reportRow = ref(null)
+const openReport = (row) => {
+  reportRow.value = row
+  reportVisible.value = true
+}
 </script>
 
 <template>
@@ -51,20 +78,24 @@ const checkin = [
     </PageHeader>
 
     <SectionCard bare>
-      <div style="display: flex; gap: 10px; align-items: center">
-        <span class="chk-chip on"><IconSvg name="scan" :size="12" /> 扫申请单条码</span>
-        <span class="chk-chip">刷医保卡</span>
-        <span class="chk-chip">刷就诊卡</span>
-        <span class="chk-chip">刷身份证</span>
-        <span class="chk-chip">手工输入病历号</span>
-        <span class="chk-chip">手工输入申请单号</span>
+      <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap">
+        <span
+          v-for="w in WAYS"
+          :key="w"
+          class="chk-chip"
+          :class="{ on: way === w }"
+          @click="way = w"
+        >
+          <IconSvg v-if="w === WAYS[0]" name="scan" :size="12" />
+          {{ w }}
+        </span>
         <span style="width: 1px; height: 20px; background: var(--line); margin: 0 4px" />
         <el-input
           v-model="applyNo"
           placeholder="扫码后自动填入"
           style="width: 230px; flex: 0 0 230px"
         />
-        <el-button type="primary" size="small" @click="toast('报到登记成功')">
+        <el-button v-perm="'checkin:report'" type="primary" size="small" @click="doCheckin">
           <IconSvg name="ok" :size="13" />报到登记
         </el-button>
         <span class="hint" style="margin-left: auto">
@@ -76,7 +107,10 @@ const checkin = [
     <div style="height: 12px" />
 
     <PatientBand>
-      <template #extra><TagBox text="已报到" tone="g" /></template>
+      <template #extra>
+        <TagBox v-if="checkedIn" text="已报到" tone="g" />
+        <TagBox v-else text="待报到" tone="o" />
+      </template>
     </PatientBand>
 
     <div style="height: 12px" />
@@ -90,8 +124,8 @@ const checkin = [
             <el-table-column prop="tm" label="报告时间" width="150" class-name="num" />
             <el-table-column prop="cc" label="结论" width="130" />
             <el-table-column label="操作" width="72" align="center">
-              <template #default>
-                <span class="link" @click="toast('报告已打开')">查看</span>
+              <template #default="{ row }">
+                <span class="link" @click="openReport(row)">查看</span>
               </template>
             </el-table-column>
           </el-table>
@@ -143,6 +177,36 @@ const checkin = [
         </SectionCard>
       </div>
     </div>
+
+    <!-- 报告详情 -->
+    <el-dialog v-model="reportVisible" title="术前检查检验报告" width="540px">
+      <table v-if="reportRow" class="tb-plain">
+        <tbody>
+          <tr>
+            <td style="width: 92px; color: #7b8fa3">项目名称</td>
+            <td><b>{{ reportRow.nm }}</b></td>
+          </tr>
+          <tr>
+            <td style="color: #7b8fa3">报告时间</td>
+            <td class="num">{{ reportRow.tm }}</td>
+          </tr>
+          <tr>
+            <td style="color: #7b8fa3">结论</td>
+            <td>{{ reportRow.cc }}</td>
+          </tr>
+          <tr>
+            <td style="color: #7b8fa3">关联申请单</td>
+            <td class="mono">DZ20261102007</td>
+          </tr>
+        </tbody>
+      </table>
+      <template #footer>
+        <el-button size="small" @click="reportVisible = false">关闭</el-button>
+        <el-button type="primary" size="small" @click="reportVisible = false; toast('报告已发送至打印')">
+          打印
+        </el-button>
+      </template>
+    </el-dialog>
   </div>
 </template>
 
